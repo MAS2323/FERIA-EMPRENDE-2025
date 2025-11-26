@@ -5,9 +5,12 @@ import axios from "axios";
 // Fallback if process.env not available (e.g., custom build without CRA env support)
 const getApiBase = () => {
   if (typeof process !== "undefined" && process.env) {
-    return process.env.REACT_APP_API_BASE || "http://localhost:3000";
+    return (
+      process.env.REACT_APP_API_BASE ||
+      "https://feria-emprende-2025-backend.onrender.com"
+    );
   }
-  return "http://localhost:3000"; // Hard fallback for browser-only environments
+  return "https://feria-emprende-2025-backend.onrender.com"; // Hard fallback for browser-only environments
 };
 
 const API_BASE = getApiBase();
