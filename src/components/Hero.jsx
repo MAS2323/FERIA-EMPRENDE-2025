@@ -1,6 +1,7 @@
-// src/components/Hero.jsx (fixed: fallback for process.env if not defined in custom setups; also added _id key fix if needed)
+// src/components/Hero.jsx (updated: added subtle admin button in top-right corner)
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Added for routing to admin
 
 // Fallback if process.env not available (e.g., custom build without CRA env support)
 const getApiBase = () => {
@@ -57,6 +58,15 @@ function Hero() {
 
   return (
     <section className="relative bg-secondary text-white py-20 px-4 overflow-hidden">
+      {/* Subtle Admin Button - Top-right corner, semi-transparent, small icon/text */}
+      <Link
+        to="/admin"
+        className="absolute top-4 right-4 z-20 opacity-60 hover:opacity-100 transition-opacity duration-300 text-sm font-semibold flex items-center space-x-1 bg-black/20 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20 hover:border-white/40"
+        title="Panel Admin"
+      >
+        <span>⚙️ Admin</span>
+      </Link>
+
       <div
         className="absolute inset-0"
         style={{
