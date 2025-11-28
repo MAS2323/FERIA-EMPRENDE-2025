@@ -1,4 +1,4 @@
-// src/components/Hero.jsx (updated: added subtle admin button in top-right corner)
+// src/components/Hero.jsx (updated: use <img> with object-cover for full image visibility in hero)
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Added for routing to admin
@@ -67,15 +67,14 @@ function Hero() {
         <span>⚙️ Admin</span>
       </Link>
 
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `url(${currentImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.3,
-        }}
-      />
+      {/* Hero Background Image with full cover visibility */}
+      {currentImage && (
+        <img
+          src={currentImage}
+          alt="Hero Background"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        />
+      )}
       <div className="relative container mx-auto text-center z-10">
         <h1 className="text-5xl md:text-7xl font-montserrat font-extrabold mb-4">
           FERIA EMPRENDE 2025

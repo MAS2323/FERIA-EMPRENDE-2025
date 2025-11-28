@@ -38,8 +38,7 @@ function Organizers() {
           Organizadores
         </h2>
         <p className="text-lg font-semibold text-gray-700 mb-8 text-center">
-          Feriantes y participantes: Más de 20 emprendedores locales presentarán
-          sus proyectos innovadores en sectores como:
+          Conoce a las marcas detrás de la tercera edición de la feria emprende:
         </p>
         <ul className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto text-lg font-semibold text-gray-700">
           {organizers.map((org) => (

@@ -18,7 +18,7 @@ function Admin() {
   const [newHeroImage, setNewHeroImage] = useState({ order: 0 });
   const [newDocument, setNewDocument] = useState({ name: "" });
 
-  const API_BASE = "https://feria-emprende-2025-backend.onrender.com"; // ¡CAMBIO: Puerto 3000 para el backend Node.js!
+  const API_BASE = "http://localhost:3000"; // ¡CAMBIO: Puerto 3000 para el backend Node.js!
 
   useEffect(() => {
     fetchData();
