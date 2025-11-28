@@ -1,4 +1,4 @@
-// src/components/Admin.jsx (corregido: puerto 3000, fixes en forms para hero-images y documents, DELETE en todos los tabs)
+// src/components/Admin.jsx (corregido: puerto 3000, fixes en forms para hero-images y documents, DELETE habilitado en todos los tabs)
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -335,8 +335,8 @@ function Admin() {
     const deleteBtnClass =
       "bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg font-semibold text-sm transition-colors duration-200";
 
-    // Nota: Para sponsors/collaborators/organizers/documents, el backend no tiene DELETE implementado aún.
-    // Solo hero-images lo tiene. Agrega en backend si necesitas.
+    // Nota: Asegúrate de que el backend tenga DELETE implementado para todos los endpoints.
+    // Si no, los botones fallarán con un error (ver mensaje en deleteItem).
 
     switch (tab) {
       case "sponsors":
@@ -345,8 +345,6 @@ function Admin() {
             <ul className="divide-y divide-gray-200">
               {sponsors.map((s) => (
                 <li key={s._id} className={rowClass}>
-                  {" "}
-                  {/* ¡FIX: Usa _id para MongoDB */}
                   <div className="flex items-center">
                     {s.logo && (
                       <img
@@ -362,7 +360,6 @@ function Admin() {
                   <button
                     onClick={() => deleteItem("sponsors", s._id, s.name)}
                     className={deleteBtnClass}
-                    disabled // Deshabilita hasta implementar DELETE en backend
                   >
                     Eliminar
                   </button>
@@ -392,7 +389,6 @@ function Admin() {
                   <button
                     onClick={() => deleteItem("collaborators", c._id, c.name)}
                     className={deleteBtnClass}
-                    disabled
                   >
                     Eliminar
                   </button>
@@ -422,7 +418,6 @@ function Admin() {
                   <button
                     onClick={() => deleteItem("organizers", o._id, o.name)}
                     className={deleteBtnClass}
-                    disabled
                   >
                     Eliminar
                   </button>
@@ -437,8 +432,6 @@ function Admin() {
             <ul className="divide-y divide-gray-200">
               {heroImages.map((h) => (
                 <li key={h._id} className={rowClass}>
-                  {" "}
-                  {/* ¡FIX: _id para MongoDB */}
                   <div className="flex items-center">
                     <img
                       src={h.url}
@@ -484,7 +477,6 @@ function Admin() {
                   <button
                     onClick={() => deleteItem("documents", d._id, d.name)}
                     className={deleteBtnClass}
-                    disabled
                   >
                     Eliminar
                   </button>
