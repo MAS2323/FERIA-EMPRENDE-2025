@@ -3,6 +3,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Admin from "./components/Admin";
+import Gallery from "./components/Gallery";
+import ProgramaCompletoFile from "./components/ProgramaCompletoFile";
 
 function App() {
   return (
@@ -11,6 +13,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/galeria" element={<Gallery />} />
+          <Route
+            path="/programa-completo-file"
+            element={<ProgramaCompletoFile />}
+          />
         </Routes>
       </div>
     </Router>

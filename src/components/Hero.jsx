@@ -1,7 +1,14 @@
-// src/components/Hero.jsx (updated: use <img> with object-cover for full image visibility in hero)
+// src/components/Hero.jsx (updated: button now links to gallery page)
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Added for routing to admin
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 // Fallback if process.env not available (e.g., custom build without CRA env support)
 const getApiBase = () => {
@@ -50,10 +57,6 @@ function Hero() {
     }
   }, [heroImages.length]);
 
-  const openPDF = (url) => {
-    window.open(url, "_blank");
-  };
-
   const currentImage = heroImages[currentImageIndex]?.url || "";
 
   return (
@@ -88,18 +91,61 @@ function Hero() {
           y el crecimiento de los emprendedores, networking, aprendizaje de
           Guinea Ecuatorial.
         </p>
-        <button
-          onClick={async () => {
-            const res = await axios.get(
-              `${API_BASE}/documents?name=programa.pdf`
-            );
-            const pdfUrl = res.data[0]?.url;
-            openPDF(pdfUrl || "https://example.com/programa.pdf");
-          }}
-          className="bg-primary hover:bg-teal text-white px-8 py-3 rounded-lg font-semibold text-lg"
+        {/* Updated: Link to gallery instead of PDF button */}
+        <Link
+          to="/galeria"
+          className="bg-primary hover:bg-teal text-white px-8 py-3 rounded-lg font-semibold text-lg mb-6 inline-block"
         >
-          Ver programa completo
-        </button>
+          Ver Galería de Imágenes
+        </Link>
+        {/* Social Media Icons - Subtle section below CTA, using react-icons */}
+        <div className="flex justify-center space-x-4 opacity-80">
+          <a
+            href="https://facebook.com/feriaemprende2025"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="text-xl hover:text-primary transition-colors duration-300"
+          >
+            <FaFacebook />
+          </a>
+          <a
+            href="https://x.com/feriaemprende2025"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            className="text-xl hover:text-primary transition-colors duration-300"
+          >
+            <FaTwitter />
+          </a>
+          <a
+            href="https://instagram.com/feriaemprende2025"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="text-xl hover:text-primary transition-colors duration-300"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="https://linkedin.com/company/feriaemprende2025"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="text-xl hover:text-primary transition-colors duration-300"
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            href="https://wa.me/240123456789" // Reemplaza con tu número de WhatsApp Business
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp Business"
+            className="text-xl hover:text-primary transition-colors duration-300"
+          >
+            <FaWhatsapp />
+          </a>
+        </div>
       </div>
     </section>
   );

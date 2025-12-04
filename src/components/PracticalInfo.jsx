@@ -1,43 +1,8 @@
-// src/components/PracticalInfo.jsx (fixed: fallback for process.env if not defined)
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-
-// Fallback if process.env not available (e.g., custom build without CRA env support)
-const getApiBase = () => {
-  if (typeof process !== "undefined" && process.env) {
-    return (
-      process.env.REACT_APP_API_BASE ||
-      "https://feria-emprende-2025-backend.onrender.com"
-    );
-  }
-  return "https://feria-emprende-2025-backend.onrender.com"; // Hard fallback for browser-only environments
-};
-
-const API_BASE = getApiBase();
+// src/components/PracticalInfo.jsx (updated: link to /programa-completo-file)
+import React from "react";
+import { Link } from "react-router-dom";
 
 function PracticalInfo() {
-  const [dossierUrl, setDossierUrl] = useState("");
-
-  useEffect(() => {
-    fetchDossier();
-  }, []);
-
-  const fetchDossier = async () => {
-    try {
-      const res = await axios.get(`${API_BASE}/documents?name=dossier.pdf`);
-      setDossierUrl(res.data[0]?.url || "");
-    } catch (error) {
-      console.error("Error fetching dossier:", error);
-    }
-  };
-
-  const downloadPDF = (url) => {
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "dossier.pdf";
-    link.click();
-  };
-
   return (
     <section className="py-16 px-4 bg-teal/10">
       <div className="container mx-auto">
@@ -64,13 +29,12 @@ function PracticalInfo() {
           </div>
         </div>
         <div className="text-center mt-8">
-          <button
-            onClick={() => downloadPDF(dossierUrl)}
-            className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold"
-            disabled={!dossierUrl}
+          <Link
+            to="/programa-completo-file"
+            className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold inline-block hover:bg-teal transition-colors"
           >
-            {dossierUrl ? "Descarga el dossier PDF aquí" : "Cargando..."}
-          </button>
+            Ver programa completo
+          </Link>
         </div>
       </div>
     </section>

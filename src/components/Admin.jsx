@@ -1,4 +1,4 @@
-// src/components/Admin.jsx (corregido: puerto 3000, fixes en forms para hero-images y documents, DELETE habilitado en todos los tabs)
+// src/components/Admin.jsx (updated: added "documents" to multiple files handling in createItem to fix 400 error)
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -60,10 +60,15 @@ function Admin() {
     Object.keys(data).forEach((key) => {
       if (key !== fileKey) formData.append(key, data[key]);
     });
-    // Para hero-images: append múltiples archivos como "images"
-    if (endpoint === "hero-images" && data[fileKey]) {
+    // Para hero-images, gallery-images y documents: append múltiples archivos como "images"
+    if (
+      (endpoint === "hero-images" ||
+        endpoint === "gallery-images" ||
+        endpoint === "documents") &&
+      data[fileKey]
+    ) {
       Array.from(data[fileKey]).forEach(
-        (file) => formData.append("images", file) // ¡FIX: Campo "images" para backend
+        (file) => formData.append("images", file) // ¡FIX: Campo "images" para backend, now includes documents
       );
     } else if (data[fileKey]) {
       formData.append(fileKey, data[fileKey]);
@@ -291,15 +296,15 @@ function Admin() {
               e.preventDefault();
               createItem(
                 "documents",
-                { name: newDocument.name, doc: e.target.doc.files[0] }, // ¡FIX: Incluir file en data
-                "doc"
+                { name: newDocument.name, images: e.target.images.files }, // Modified: Handle multiple images
+                "images"
               );
             }}
             className="bg-white p-6 rounded-lg shadow-md mb-6"
           >
             <input
               type="text"
-              placeholder="Nombre del documento (e.g., dossier.pdf)"
+              placeholder="Nombre del documento (e.g., galeria-imagenes)"
               value={newDocument.name}
               onChange={(e) => setNewDocument({ name: e.target.value })}
               className={commonInputClass}
@@ -307,11 +312,15 @@ function Admin() {
             />
             <input
               type="file"
-              name="doc"
-              accept=".pdf"
+              name="images"
+              accept=".jpg,.jpeg,image/jpeg,image/jpg"
+              multiple
               className={fileInputClass}
               required
             />
+            <p className="text-sm text-gray-600 mb-3">
+              Selecciona múltiples imágenes JPG para el documento/galería.
+            </p>
             <button
               type="submit"
               disabled={loading}
@@ -319,7 +328,7 @@ function Admin() {
                 buttonClass + (loading ? " opacity-50 cursor-not-allowed" : "")
               }
             >
-              {loading ? "Subiendo..." : "Subir PDF"}
+              {loading ? "Subiendo..." : "Subir Imágenes"}
             </button>
           </form>
         );
@@ -465,14 +474,16 @@ function Admin() {
                     <span className="font-semibold text-gray-800">
                       {d.name}
                     </span>
-                    <a
-                      href={d.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-4 text-primary hover:underline"
-                    >
-                      Ver
-                    </a>
+                    {d.url && (
+                      <a
+                        href={d.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-4 text-primary hover:underline"
+                      >
+                        Ver
+                      </a>
+                    )}
                   </div>
                   <button
                     onClick={() => deleteItem("documents", d._id, d.name)}
