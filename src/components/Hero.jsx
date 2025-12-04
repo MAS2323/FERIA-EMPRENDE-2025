@@ -8,6 +8,7 @@ import {
   FaInstagram,
   FaLinkedin,
   FaWhatsapp,
+  FaTiktok,
 } from "react-icons/fa";
 
 // Fallback if process.env not available (e.g., custom build without CRA env support)
@@ -101,15 +102,15 @@ function Hero() {
         {/* Social Media Icons - Subtle section below CTA, using react-icons */}
         <div className="flex justify-center space-x-4 opacity-80">
           <a
-            href="https://facebook.com/feriaemprende2025"
+            href="https://www.tiktok.com/@feria.emprende?_t=ZS-8zpkfWV5uPS&_r=1"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
             className="text-xl hover:text-primary transition-colors duration-300"
           >
-            <FaFacebook />
+            <FaTiktok />
           </a>
-          <a
+          {/* <a
             href="https://x.com/feriaemprende2025"
             target="_blank"
             rel="noopener noreferrer"
@@ -117,9 +118,9 @@ function Hero() {
             className="text-xl hover:text-primary transition-colors duration-300"
           >
             <FaTwitter />
-          </a>
+          </a> */}
           <a
-            href="https://instagram.com/feriaemprende2025"
+            href="https://www.instagram.com/feriaemprendegq?igsh=dHRiejR3M2Zrazhz&utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -127,7 +128,7 @@ function Hero() {
           >
             <FaInstagram />
           </a>
-          <a
+          {/* <a
             href="https://linkedin.com/company/feriaemprende2025"
             target="_blank"
             rel="noopener noreferrer"
@@ -135,9 +136,9 @@ function Hero() {
             className="text-xl hover:text-primary transition-colors duration-300"
           >
             <FaLinkedin />
-          </a>
+          </a> */}
           <a
-            href="https://wa.me/240123456789" // Reemplaza con tu número de WhatsApp Business
+            href="https://whatsapp.com/channel/0029Vb6g7YrLtOjFTp3Llr2M" // Reemplaza con tu número de WhatsApp Business
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp Business"

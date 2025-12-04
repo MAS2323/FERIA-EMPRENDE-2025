@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaLinkedin,
   FaWhatsapp,
+  FaTiktok,
 } from "react-icons/fa";
 
 function Footer() {
@@ -18,15 +19,15 @@ function Footer() {
       <div className="flex justify-center space-x-6 mb-4">
         {/* Social Media Icons with react-icons */}
         <a
-          href="https://facebook.com/feriaemprende2025" // Reemplaza con tu URL real
+          href="https://www.tiktok.com/@feria.emprende?_t=ZS-8zpkfWV5uPS&_r=1"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook"
-          className="text-2xl hover:text-primary transition-colors duration-300"
+          className="text-xl hover:text-primary transition-colors duration-300"
         >
-          <FaFacebook />
+          <FaTiktok />
         </a>
-        <a
+        {/* <a
           href="https://x.com/feriaemprende2025" // Reemplaza con tu URL real (X/Twitter)
           target="_blank"
           rel="noopener noreferrer"
@@ -34,17 +35,17 @@ function Footer() {
           className="text-2xl hover:text-primary transition-colors duration-300"
         >
           <FaTwitter />
-        </a>
+        </a> */}
         <a
-          href="https://instagram.com/feriaemprende2025" // Reemplaza con tu URL real
+          href="https://www.instagram.com/feriaemprendegq?igsh=dHRiejR3M2Zrazhz&utm_source=qr"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
-          className="text-2xl hover:text-primary transition-colors duration-300"
+          className="text-xl hover:text-primary transition-colors duration-300"
         >
           <FaInstagram />
         </a>
-        <a
+        {/* <a
           href="https://linkedin.com/company/feriaemprende2025" // Reemplaza con tu URL real
           target="_blank"
           rel="noopener noreferrer"
@@ -52,13 +53,13 @@ function Footer() {
           className="text-2xl hover:text-primary transition-colors duration-300"
         >
           <FaLinkedin />
-        </a>
+        </a> */}
         <a
-          href="https://wa.me/240123456789" // Reemplaza con tu número de WhatsApp Business (formato internacional, e.g., 240 para Guinea Ecuatorial)
+          href="https://whatsapp.com/channel/0029Vb6g7YrLtOjFTp3Llr2M" // Reemplaza con tu número de WhatsApp Business
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp Business"
-          className="text-2xl hover:text-primary transition-colors duration-300"
+          className="text-xl hover:text-primary transition-colors duration-300"
         >
           <FaWhatsapp />
         </a>
