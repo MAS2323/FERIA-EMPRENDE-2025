@@ -1,4 +1,4 @@
-// src/components/Gallery.jsx (new: image gallery with grid and fullscreen modal slider)
+// src/components/Gallery.jsx (updated: added stopPropagation to modal buttons for proper image navigation)
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // For back navigation
@@ -28,7 +28,7 @@ function Gallery() {
 
   const fetchImages = async () => {
     try {
-      const res = await axios.get(`${API_BASE}/hero-images`); // Cambia a /gallery-images si creas endpoint nuevo
+      const res = await axios.get(`${API_BASE}/hero-images`); // No change: Keep fetching from /hero-images
       setImages(res.data);
     } catch (error) {
       console.error("Error fetching gallery images:", error);
@@ -52,11 +52,13 @@ function Gallery() {
     setIsModalOpen(false);
   };
 
-  const nextImage = () => {
+  const nextImage = (e) => {
+    e.stopPropagation(); // Prevent modal close on button click
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
-  const prevImage = () => {
+  const prevImage = (e) => {
+    e.stopPropagation(); // Prevent modal close on button click
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
@@ -132,7 +134,10 @@ function Gallery() {
             →
           </button>
           <button
-            onClick={closeModal}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent modal close on close button click
+              closeModal();
+            }}
             className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full"
           >
             ×
